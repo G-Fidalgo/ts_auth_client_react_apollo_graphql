@@ -31,7 +31,7 @@ export const Register: React.FC = () => {
             setShow(false);
             const { data } = await register({ variables: { email, password, confirmation } });
             if (data === undefined || data?.register === undefined) throw new Error('Invalid credentials');
-            history.replace(`/login`);
+            history.replace(`/confirm/${data?.register?.tmp_confirm_token}`);
           } catch (err) {
             setShow(true);
           }
